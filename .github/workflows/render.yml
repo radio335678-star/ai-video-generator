@@ -1,0 +1,37 @@
+name: Render Remotion Video
+
+on:
+  workflow_dispatch:
+    inputs:
+      composition:
+        description: "Composition ID (HelloWorld | ProductAd | your new one)"
+        required: true
+        default: "HelloWorld"
+      scale:
+        description: "Scale (0.5 draft, 1 final)"
+        required: false
+        default: "1"
+  push:
+    branches: [main]
+    paths:
+      - "src/compositions/**"
+      - "src/Root.tsx"
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package.json
+      - run: npm ci || npm install
+      - run: npx remotion render ${{ inputs.composition || 'HelloWorld' }} out/video.mp4 --codec=h264 --concurrency=2 --image-format=jpeg --scale=${{ inputs.scale || '1' }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: video-${{ inputs.composition || 'auto' }}
+          path: out/video.mp4
+          retention-days: 90

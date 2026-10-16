@@ -1,0 +1,32 @@
+{
+  "name": "ai-video-generator",
+  "version": "1.0.0",
+  "description": "Remotion video factory — React videos rendered locally or serverless on GitHub Actions",
+  "license": "SEE-LICENSE-IN-AGENTS.md",
+  "type": "module",
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render",
+    "still": "remotion still",
+    "skills": "remotion skills add",
+    "render:draft": "remotion render ProductAd out/productad-draft.mp4 --scale=0.5 --image-format=jpeg --concurrency=2 --codec=h264",
+    "render:final": "remotion render ProductAd out/productad.mp4 --codec=h264 --concurrency=2",
+    "render:smoke": "remotion render HelloWorld out/helloworld.mp4 --codec=h264 --concurrency=2"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.0",
+    "@remotion/media": "4.0.0",
+    "@remotion/shapes": "4.0.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.0",
+    "zod": "3.23.8"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.3",
+    "typescript": "5.5.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
