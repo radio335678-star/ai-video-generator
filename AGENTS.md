@@ -4,6 +4,8 @@
 > Codex, Kimi, Copilot, Windsurf, VS Code) reads THIS file and can build + render
 > videos at full capacity. Everything else in this repo is code this file points to.
 > Git is the source of truth — laptop stays light, heavy rendering runs on GitHub Actions.
+> Three files run this repo: `AGENTS.md` (rules/HOW), `AGENT-PLAYBOOK.md` (menu/WHAT),
+> `BROWSER-CAPTURE.md` (steal web motion via Obscura — read before cloning any web animation).
 
 ---
 
@@ -84,7 +86,18 @@ Remotion 5.x license: free for individuals / ≤3-employee for-profits / non-pro
 evaluation. Larger for-profit orgs need a Company License (`remotion.dev/license`).
 Check before commercial client work.
 
-## 8. Troubleshooting (in order)
+## 8. Web-motion capture (Obscura — read BROWSER-CAPTURE.md first)
+
+If the reference animation **plays in a browser** (Lottie-web, Rive, GSAP, Three.js,
+canvas ads), do NOT guess from visuals. Capture the real source via Obscura
+(~30MB/instance, 37 MCP tools, CDP `ws://127.0.0.1:9222`):
+`browser_navigate` → `browser_network_requests` (save `.json`/`.riv`/textures) →
+`browser_evaluate` probe bundle → screenshots for timing → `public/captured/MANIFEST.md`
+→ rebuild as your composition. Pillar `obscura-browser/` is READ-ONLY — run
+`verify_obscura.py` + scripts, never edit inside. Third-party assets stay reference-only
+(gitignored); steal choreography, not files.
+
+## 9. Troubleshooting (in order)
 
 1. `npx remotion studio` empty → `npm install` missed or composition not registered in `Root.tsx`.
 2. OOM on render → lower `--concurrency=1`, add `--scale=0.5`, switch `--image-format=jpeg`.
@@ -93,4 +106,4 @@ Check before commercial client work.
 5. Font/asset missing → put under `public/` and reference via `staticFile()`.
 
 ---
-*If in doubt: Studio previews, Actions renders, this file decides.*
+*If in doubt: Studio previews, Actions renders, web motion gets captured (BROWSER-CAPTURE.md), this file decides.*

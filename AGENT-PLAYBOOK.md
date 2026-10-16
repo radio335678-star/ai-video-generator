@@ -22,6 +22,9 @@
 | 10 | Review a video PR | Quality gate before merge | `"Review this composition PR: timing, fonts, schema/defaultProps present, Root registered, draft render command included."` |
 | 11 | Design system / template library | One brand style reused across all videos | `"Convert <Comp> into a reusable template: props for brand colors, fonts, logo via public/ + staticFile."` |
 | 12 | Trigger cloud render | Zero laptop load via GitHub Actions | `"Push this branch and tell me the exact Actions run to click: Render Remotion Video with composition=<Name>."` |
+| 13 | Capture web animation source | Clone browser-rendered motion precisely (Obscura) | `"Follow BROWSER-CAPTURE.md §3 on <URL>: navigate, network-capture .json/.riv, evaluate probe bundle, manifest timing."` |
+| 14 | Rebuild captured motion as yours | Competitor-style clone with your branding | `"Rebuild per BROWSER-CAPTURE.md §4: same choreography/timing, my colors/fonts/copy. Third-party assets reference-only."` |
+| 15 | Decide capture vs rebuild | Know in 30s which pipeline fits | `"Apply BROWSER-CAPTURE.md §1 to <URL or file>: capture, flat-pixel rebuild, or partial?"` |
 
 ## 2. Purpose playbook — when to use which capability
 
@@ -31,11 +34,12 @@
 - **Product demos / SaaS:** 11 → 7 → 10. Design system + personalized per-client renders, PR review gate.
 - **Social reels / memes:** 2 → 5 → 6. Re-cut existing comp, still thumbnail, GIF export.
 - **Client work (paid):** 11 → 10 → 12 + license check in `AGENTS.md` §7 before delivery.
+- **Clone web motion (competitor animation on a site):** 15 → 13 → 14 → 9 → 12. Decide pipeline, capture source via Obscura, rebuild as yours, tune, Actions final.
 
 ## 3. Standard agent workflow (every task, every IDE)
 
 ```
-1. Read AGENTS.md (rules) + this playbook (menu)
+1. Read AGENTS.md (rules) + this playbook (menu) + BROWSER-CAPTURE.md (if cloning web motion)
 2. git checkout -b feature/<video-name>
 3. Write/edit src/compositions/<Name>.tsx (schema + defaultProps mandatory)
 4. Register <Composition> in src/Root.tsx
@@ -62,4 +66,4 @@ No IDE-specific syntax. If the agent asks "which framework?" answer: "Remotion 4
 - Commercial client delivery → re-check Remotion license tier first.
 
 ---
-*Menu (this file) tells you WHAT + WHY. `AGENTS.md` tells you HOW. GitHub Actions does the WORK.*
+*Menu (this file) tells you WHAT + WHY. `AGENTS.md` tells you HOW. `BROWSER-CAPTURE.md` tells you how to STEAL web motion cleanly. GitHub Actions does the WORK.*

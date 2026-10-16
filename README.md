@@ -24,6 +24,15 @@ npm run render:final       # local final
 Free tier: public repo unlimited Linux minutes, private 2000 min/mo. Runner pins
 `--concurrency=2 --codec=h264 --image-format=jpeg`.
 
+## Clone any web animation (Obscura capture)
+
+Web motion (Lottie, Rive, GSAP, Three.js) renders via JS in the browser — so capture
+the real source instead of guessing: full SOP in **`BROWSER-CAPTURE.md`**.
+
+```powershell
+py .\obscura-browser\verify_obscura.py   # from C:\quaasxecosystem-orchestrator
+```
+
 ## Add a video
 
 1. New file `src/compositions/<Name>.tsx` (Zod schema + defaultProps required)
@@ -34,6 +43,8 @@ Free tier: public repo unlimited Linux minutes, private 2000 min/mo. Runner pins
 
 ```
 AGENTS.md                    <- universal agent brain (read me)
+AGENT-PLAYBOOK.md            <- capability menu + copy-paste prompts
+BROWSER-CAPTURE.md           <- steal web motion via Obscura (capture SOP)
 src/Root.tsx                 <- composition registry
 src/compositions/HelloWorld.tsx
 src/compositions/ProductAd.tsx
